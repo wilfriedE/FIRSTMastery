@@ -1,8 +1,14 @@
-# LearnIt 
+FIRSTMastery
+============
 
-(A basic platform to host your own (community) courses, tutorials, learning materials.)
+A centralized training resource for the [FIRST](http://www.usfirst.org/) Robotics community.
 
-LearnIt is built on top of  [gae-init](https://github.com/gae-init/gae-init).
+FIRSTMastery is built on top of gae-init.
+
+**gae-init** is the easiest way to kick start new applications on Google
+App Engine using Flask, Bootstrap and tons of other cool features.
+
+Read more about **gae-init** here [https://github.com/gae-init/gae-init](https://github.com/gae-init/gae-init).
 
 Running the Development Environment
 -----------------------------------
@@ -48,6 +54,9 @@ are up to date.
 
 GOALS and Objectives :
 ---------------------
-- TBD
+- Build the best learning platform for the FIRST community.
+- Make the platform as collaborative and community central as possible.
+- Make the project modular and understanstable so anyone can contribute.
+- *become a contributor and introduce your goals...
 
 All Contributions are welcome. 

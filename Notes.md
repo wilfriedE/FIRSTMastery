@@ -175,7 +175,13 @@ Possible types:
 		
 The json string for these fields depending on which will have details about name and such which may be required. 
 
-.data-deletable are classes for elements that when cliked can delete stuff using ajax
+
+TEAMS:
+  A team can have a team admin but must confirm with moderators first.
+  A team just as a user has pins (a.k.a recommendations) of items they want to look at later or recommend
+  Team has number  and program which are references to FIRST such as team_number: 1915, team_program: FRC
+  user has teams field which is utilized to recognize team belonging to
+  
 
 ___development ideas___END
 

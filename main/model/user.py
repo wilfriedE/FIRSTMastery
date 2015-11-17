@@ -25,6 +25,7 @@ class User(model.Base):
   token = ndb.StringProperty(default='')
   password_hash = ndb.StringProperty(default='')
 
+  #  Bellow properties were added for FIRSTMastery
   teams = ndb.KeyProperty(repeated=True)
   achievements = ndb.KeyProperty(repeated=True)
   points = ndb.IntegerProperty()

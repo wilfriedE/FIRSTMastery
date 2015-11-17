@@ -14,6 +14,7 @@ import util
 import config
 
 class Topic(model.Base):
+  #  Topics can be FRC, FTC, Safety etc...
   name = ndb.StringProperty(required=True,indexed=True)
   description = ndb.StringProperty(default="")
   approved = ndb.BooleanProperty(default=False)
@@ -21,9 +22,9 @@ class Topic(model.Base):
 
   #Generate Color if non already
   def _pre_put_hook(self):
-  	if not self.color:
-  		r = lambda: random.randint(0,255)
-  		self.color = ('#%02X%02X%02X' % (r(),r(),r()))
+    if not self.color:
+      r = lambda: random.randint(0,255)
+      self.color = ('#%02X%02X%02X' % (r(),r(),r()))
 
   FIELDS = {
       'name': fields.String,
