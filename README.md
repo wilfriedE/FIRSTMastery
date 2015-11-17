@@ -2,13 +2,7 @@ FIRSTMastery
 ============
 
 A centralized training resource for the [FIRST](http://www.usfirst.org/) Robotics community.
-
-FIRSTMastery is built on top of gae-init.
-
-**gae-init** is the easiest way to kick start new applications on Google
-App Engine using Flask, Bootstrap and tons of other cool features.
-
-Read more about **gae-init** here [https://github.com/gae-init/gae-init](https://github.com/gae-init/gae-init).
+Built with [LearnIt](https://github.com/wilfriedE/LearnIt).
 
 Running the Development Environment
 -----------------------------------
