@@ -8,7 +8,13 @@
   </div>
   <div class="media-body">
     <h3 class="title">{{track_db.name}}</h3>
-    <p class="desc">List Topics: {{track_db.topics|join(' ')}}</p>  
+    <p class="desc"><ul class="list-inline">
+        <li><strong>Topics:</strong></li>
+        #for topic in track_db.topics
+        #set topic = topic.get()
+          <li style="color:{{topic.color}}"><a href="{{url_for('topic_view', topic_name=topic.name)}}">{{topic.name}}</a></li>
+        #endfor
+      </ul></p>
     <button class="btn btn-info" ><span class="mdi-content-content-copy"></span> Start</button>
 
     # for course in track_db.get_courses()

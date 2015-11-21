@@ -1,35 +1,44 @@
 # extends 'lesson_version/lesson_version_base.html'
 # block lesson_version_content
-  <div class="col-lg-8">
+  #set lesson = lesson_version.lesson.get()
+  <div class="col-lg-9">
     <div class="bs-component" id="lesson-version-player">
     # include 'lesson_version/lesson_version_buttons.html'
     <div id="viewport"></div>
-    Details:<H2>Name:</H2> {{lesson_version.name}}
-    <H2>Description:</H2>{{lesson_version.description}}
-    <H2>Prime Lesson:</H2>{{lesson_version.lesson}}
-    <H2>Topics:</H2>{{lesson_version.topics}}
-    <H2>Is a:</H2>{{lesson_version.is_a}}
-    <H2>Data:</H2>{{lesson_version.data}}
-      Contributor:
-      {{lesson_version.contributor.get().load_card()|safe }}
+
+    <div class="well well-sm">
+    <p class="desc"><strong>Description:</strong> {{lesson_version.description}}</p>
+    <p class="desc"><ul class="list-inline">
+        <li><strong>Topics:</strong></li>
+        #for topic in lesson_version.topics
+        #set topic = topic.get()
+          <li style="color:{{topic.color}}"><a href="{{url_for('topic_view', topic_name=topic.name)}}">{{topic.name}}</a></li>
+        #endfor
+      </ul></p>
+    <strong>Contributor:</strong><p>{{lesson_version.contributor.get().load_card()|safe }}</p>
+
+    <i>--Developer Details--</i>
+    <p>Is a:</p>{{lesson_version.is_a}}
+    <p>Data:</p>{{lesson_version.data}}
+    <p> <strong>Prime Lesson</strong> <a href="{{url_for("lesson", lesson_key=lesson.key.urlsafe())}}">{{lesson.name}}</a>
+    {{lesson.key}}
+    </p>
+  
     </div>
-      //Discuss Comments for lesson_version
+
+    </div>
+      //Discourse Thread for Primary Lesson
   </div>
 
   <div class="col-lg-3">
     <div class="bs-component">
     <div class="well well-lg">
-    "This is a lesson version"
-      #if display_type == 'lesson_version'
-        Take Quiz if There is a Quiz for this lesson else, learn more button 
-      #elif display_type == 'lesson-version'
-        Show All versions of the current lesson
-      #elif display_type == 'course-lesson'
-        Take Quiz if There is Quiz or Next Lesson if there is next lesson, Previous Lesson if there is previous lesson
-        To Do is Logic for Track 
-      #endif
+      You are viewing a lesson version of the lesson:
+      
+     <a href="{{url_for("lesson", lesson_key=lesson.key.urlsafe())}}">{{lesson.name}}</a>
     </div>
     </div>
   </div>
+
 # include 'lesson_version/lesson_version_view_scripts.html'
 # endblock

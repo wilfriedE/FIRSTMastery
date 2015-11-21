@@ -8,7 +8,14 @@
   </div>
   <div class="media-body">
     <h3 class="title">{{course_db.name}}</h3>
-    <p class="desc">List Topics: {{course_db.topics|join(' ')}}</p>  
+    <p class="desc"><ul class="list-inline">
+        <li><strong>Topics:</strong></li>
+        #for topic in course_db.topics
+        #set topic = topic.get()
+          <li style="color:{{topic.color}}"><a href="{{url_for('topic_view', topic_name=topic.name)}}">{{topic.name}}</a></li>
+        #endfor
+      </ul></p>
+
     <a class="btn btn-info" href="{{url_for('course_lesson', course_key=course_db.key.urlsafe(), position=0)}}"><span class="mdi-image-slideshow"></span>Start Course</a>
     # set l_position = 0
     # for lesson in course_db.get_lessons()

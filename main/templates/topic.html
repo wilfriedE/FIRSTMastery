@@ -1,7 +1,9 @@
 # extends 'base.html'
 # block content
 <div class="row">
-  <h2 > Viewing contents with Topic: {{topic.name}}</h2>
+  <div class="well well-sm">
+    <p><strong>Topic: <i style="color:{{topic.color}}">{{topic.name}}</i></strong> {{"-" + topic.description}}</p>
+  </div>
 </div>
 <div class="row">
 	<h2 align="center">Lessons</h2>

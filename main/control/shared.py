@@ -32,9 +32,11 @@ def lesson_content_fields(content_type):
 @app.route('/lesson/viewport/<content_type>/')
 def lesson_viewport(content_type): 
   data = flask.json.loads(util.param("data"))
+  name = util.param("name")
   return flask.render_template(
       'shared/viewport.html',
       content_type=content_type,
       data=data,
+      name=name,
       html_class='lesson-viewport',
     )

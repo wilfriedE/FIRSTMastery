@@ -65,7 +65,7 @@ window.onload = function() {
       $is_a.selectize.addItems(eformat);
     };
 
-    $("#esson-form").submit(function(event) {
+    $("#lesson-form").submit(function(event) {
       event.preventDefault();
       var form = $(this);
       postUsingAjax(form.attr('action'), form.serialize(), handleFormSuccessPost, handleFormFailurePost);
