@@ -55,6 +55,39 @@ def track_card(track_id):
     )
 
 ###############################################################################
+# Track Course View
+###############################################################################
+@app.route('/track/<track_key>/c/<position>')
+def track_course(track_key, position=0):
+  if track_key and position:
+    track_db =  ndb.Key(urlsafe=track_key).get()
+    t_course = track_db.get_course(str(position))
+    course_db = ndb.Key(urlsafe=t_course['e_value']).get()
+    c_previous = t_course['e_previous']
+    c_next = t_course['e_next']
+  else:
+    flask.abort(404)
+  return flask.render_template(
+      'course/course.html',
+      track_db = track_db,
+      course_db = course_db,
+      c_previous = c_previous,
+      c_next = c_next,
+      title= 'Learning',
+      html_class='course-view',
+      display_type='track-course',
+    )
+
+@app.route('/track/<track_key>/start')
+def track_start(track_key):
+  track_db = ndb.Key(urlsafe=track_key).get()
+  if track_db:
+    t_course = track_db.get_course('0')
+    return flask.redirect(flask.url_for('course_lesson', course_key=t_course['e_value'], position=0))
+  else:
+    flask.abort(404)
+
+###############################################################################
 # New Track
 ###############################################################################
 class NewTrackForm(wtf.Form):

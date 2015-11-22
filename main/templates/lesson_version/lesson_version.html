@@ -16,18 +16,10 @@
         #endfor
       </ul></p>
     <strong>Contributor:</strong><p>{{lesson_version.contributor.get().load_card()|safe }}</p>
-
-    <i>--Developer Details--</i>
-    <p>Is a:</p>{{lesson_version.is_a}}
-    <p>Data:</p>{{lesson_version.data}}
-    <p> <strong>Prime Lesson</strong> <a href="{{url_for("lesson", lesson_key=lesson.key.urlsafe())}}">{{lesson.name}}</a>
-    {{lesson.key}}
-    </p>
-  
     </div>
 
     </div>
-      //Discourse Thread for Primary Lesson
+      //Discourse Thread for Primary Lesson work in progress
   </div>
 
   <div class="col-lg-3">

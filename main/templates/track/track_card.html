@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="well well-md" style="height:200px;">
+  <div class="well well-md" style="min-height:24n0px;">
     <div class="media" >
 
     <div class="media-left media-middle">
@@ -14,17 +14,18 @@
           <li style="color:{{topic.color}}"><a href="{{url_for('topic_view', topic_name=topic.name)}}">{{topic.name}}</a></li>
         #endfor
       </ul></p> 
-      <button class="btn btn-info" ><span class="mdi-image-slideshow"></span>Start Track</button>
+      <a class="btn btn-info" href="{{url_for('track_start',track_key=track_db.key.urlsafe())}}" ><span class="mdi-image-slideshow"></span>Start Track</a>
       <button class="btn btn-primary"  data-toggle="collapse" data-target="#collapseCourses-{{track_db.key.urlsafe()}}" aria-expanded="false" aria-controls="collapseCourses-{{track_db.key.urlsafe()}}"><span class="mdi-content-content-copy"></span>View Courses</button>
     </div>
 
     <div  class="collapse" id="collapseCourses-{{track_db.key.urlsafe()}}">
+      # set c_position = 0
       # for course in track_db.get_courses()
       # set course_key = course
       # set course = course.get()
       <div class="media" style="border-left: 0.25em solid {{course.color}}">
         <div class="media-left media-middle">
-          <a href="{{url_for('course', course_key=course.key.urlsafe())}}">
+          <a href="{{url_for('track_course', track_key=track_db.key.urlsafe(), position=c_position)}}">
            <i class="mdi-av-play-circle-outline" style="font-size: 50pt;"></i>
           </a>
         </div>
@@ -33,6 +34,7 @@
           <p class="desc">{{course.description}}</p>
         </div>
       </div>
+      # set c_position = c_position + 1
       # endfor
     </div>
 

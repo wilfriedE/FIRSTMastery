@@ -29,7 +29,7 @@
       
       # if current_user.id > 0
 
-        <li><a href="{{url_for('profile')}}" class="btn btn-primary btn-raised"><img src="{{current_user.user_db.avatar_url_size(20)}}" alt="Avatar of {{current_user.name}}"> {{current_user.name}} </a></li>
+        <li><a href="{{url_for('profile')}}" class="btn btn-primary btn-raised"><img src="{{current_user.user_db.avatar_url_size(20)}}" alt="Avatar of {{current_user.name}}" style="max-width: 20px;max-height: 20px;"> {{current_user.name}} </a></li>
         # if current_user.admin
           <li class="divider"></li>
           <li><a class="btn btn-info btn-raised" href="{{url_for('admin')}}"><span class="fa fa-fw fa-cog"></span> Admin</a></li>

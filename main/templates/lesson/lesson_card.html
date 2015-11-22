@@ -1,6 +1,6 @@
 <div class="row">
   <div class="well well-md">
-   <div class="media"  style="height:200px;">
+   <div class="media"  style="min-height:200px;">
 
     <div class="media-left media-middle">
       <a href="{{url_for('lesson', lesson_key=lesson_db.key.urlsafe())}}" style="color:{{lesson_db.color}}"><i class="mdi-av-play-circle-outline" style="font-size: 60pt;"></i></a>
@@ -10,7 +10,7 @@
       <h3 class="title">{{lesson_db.name|truncate(50)}}</h3>
 	  <p class="desc">{{lesson_db.description|truncate(100)}}</p>	
 	  <!-- Versions modal trigger -->
-	  <button class="btn" class="btn btn-primary"  data-toggle="collapse" data-target="#collapseVersions-{{lesson_db.key.urlsafe()}}" aria-expanded="false" aria-controls="collapseVersions-{{lesson_db.key.urlsafe()}}"><span class="  mdi-content-content-copy"></span>View Versions </button>
+	  <button class="btn" class="btn btn-primary" data-toggle="collapse" data-target="#collapseVersions-{{lesson_db.key.urlsafe()}}" aria-expanded="false" aria-controls="collapseVersions-{{lesson_db.key.urlsafe()}}"><span class="  mdi-content-content-copy"></span>View Versions </button>
       <a align="center" href="{{url_for('propose_new_lesson_version', lesson_id=lesson_db.key.id())}}" type="button"   class="btn btn-primary">Propose an update</a>
     </div>
 

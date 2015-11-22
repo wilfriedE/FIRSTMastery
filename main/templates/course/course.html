@@ -7,7 +7,28 @@
     <i class="mdi-maps-layers" style="font-size: 60pt;"></i>
   </div>
   <div class="media-body">
-    <h3 class="title">{{course_db.name}}</h3>
+    
+    #if track_db
+    <div class="row">
+      #if c_previous or c_previous >= 0
+       <div class="col-lg-2"><a class="btn btn-sm btn-info btn-raised" href="{{url_for('track_course', track_key=track_db.key.urlsafe(), position=c_previous)}}"> <span class="fa fa-fw fa-arrow-circle-left"></span> Previous Course</a></div>
+      #endif
+
+      <div class="col-lg-8" style="text-align:center;"><h3>{{course_db.name}}</h3></div>
+
+      #if c_next or c_next >= 0
+       <div class="col-lg-2"><a class="btn btn-sm btn-info btn-raised" href="{{url_for('track_course', track_key=track_db.key.urlsafe(), position=c_next)}}">
+        <span class="fa fa-fw fa-arrow-circle-right"></span> Next Course
+       </a></div>
+      #endif
+    </div>
+     #else
+
+    <h3>{{course_db.name}}</h3>
+
+    #endif
+
+    <p class="desc"><strong>Description:</strong>{{course_db.description}}</p>
     <p class="desc"><ul class="list-inline">
         <li><strong>Topics:</strong></li>
         #for topic in course_db.topics
@@ -16,7 +37,13 @@
         #endfor
       </ul></p>
 
-    <a class="btn btn-info" href="{{url_for('course_lesson', course_key=course_db.key.urlsafe(), position=0)}}"><span class="mdi-image-slideshow"></span>Start Course</a>
+    <a class="btn btn-info" href="{{url_for('course_lesson', course_key=course_db.key.urlsafe(), position=0)}}"><span class="fa fa-fw fa-play"></span>Start Course</a>
+
+    #if track_db
+      <a class="btn btn-primary" href="{{url_for('track', track_key=track_db.key.urlsafe())}}">
+        <span class="fa fa-fw fa-eye"></span> View Track</a>
+    #endif
+
     # set l_position = 0
     # for lesson in course_db.get_lessons()
     # set lesson_key = lesson
