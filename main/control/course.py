@@ -109,7 +109,7 @@ def new_course():
 
 ##This would be the process where users can propose new versions for a Course. These would of course need approval.
 @app.route('/course/<course_id>/update/')
-@auth.login_required
+@auth.admin_required
 def course_update(course_id):
   course_db = model.Course.get_by_id(int(course_id))
   form = NewCourseForm(name = course_db.name, description = course_db.description,

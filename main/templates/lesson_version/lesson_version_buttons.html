@@ -1,14 +1,51 @@
   <div class="panel panel-default">
+    #set vote = lesson_version.vote.get()  
     <div class="panel-body">
-      # if current_user.id > 0
-       #if current_user.user_db.key == lesson_version.contributor or current_user.admin
- 		<a class="btn btn-sm btn-info btn-raised" href="{{url_for('lesson_version_update', lesson_version_id=lesson_version.key.id())}}">
+    # if current_user.id > 0       
+      <p class="desc">
+        <ul class="list-inline">
+          <li><strong> Total Votes:</strong> {{vote.total}} |  {{vote.upvote}} - {{vote.downvote}}   </li>
+          <li ><a class="btn btn-sm" title="Up Vote"
+              data-actionable="lesson-upvote"
+              data-action="postable"
+              data-postable="post"
+              data-success="Lesson Version has been upvoted"
+              data-url="{{url_for('api.vote',vote_key=vote.key.urlsafe())}}"
+              data-value="upvote"
+              data-error="Something went wrong while upvoting lesson version. Please try again."
+              data-after-effect="refresh">
+            <span class="fa fa-thumbs-o-up"></span>Up Vote</a>
+          </li>
+          <li ><a class="btn btn-sm " title="Down Vote"
+              data-actionable="lesson-downvote"
+              data-action="postable"
+              data-postable="post"
+              data-success="Lesson version has been downvoted"
+              data-url="{{url_for('api.vote',vote_key=vote.key.urlsafe())}}"
+              data-value="downvote"
+              data-error="Something went wrong while downvoting lesson version. Please try again."
+              data-after-effect="refresh">
+            <span class="fa fa-thumbs-o-down"></span>Down Vote
+          </a></li>
+          <li>More votes will help this Lesson version to be considered primary version for the main Lesson.</li>
+        </ul>
+      </p>
+
+     #if current_user.user_db.key == lesson_version.contributor or current_user.admin
+ 		   <a class="btn btn-sm btn-info btn-raised" href="{{url_for('lesson_version_update', lesson_version_id=lesson_version.key.id())}}">
 	    	<span class="fa fa-fw fa-edit"></span> Edit
 	    </a>
 	    <a class="btn btn-sm btn-danger btn-raised" href="#">
 	    	<span class="fa fa-fw fa-close"></span> Delete
 	    </a>
 	   #endif
+    #else
+      <p class="desc">
+        <ul class="list-inline">
+          <li><strong> Total Votes:</strong> {{vote.total}} </li>
+          <li >Login to Vote! The votes will help this Lesson version to be considered primary version for the main Lesson.</li>
+        </ul>
+      </p>
 	  # endif
     </div>
   </div>

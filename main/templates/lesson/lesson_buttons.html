@@ -6,7 +6,6 @@
       <a class="btn btn-sm btn-primary btn-raised" href="#">
         <span class="fa fa-fw fa-map-pin"></span> Pin This
       </a>
-      {{vote_buttons(current_user, lesson_db.vote.get())}}
 	  # if current_user.admin
 	    <a class="btn btn-sm btn-info btn-raised" href="{{url_for('lesson_version_update', lesson_version_id=lesson_db.latest_version.id())}}">
 	    	<span class="fa fa-fw fa-edit"></span> Edit

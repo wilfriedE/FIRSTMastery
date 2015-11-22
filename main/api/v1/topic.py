@@ -39,7 +39,7 @@ class TopicAPI(restful.Resource):
       helpers.make_not_found_exception('Topic %s not found' % topic_key)
     return helpers.make_response(topic_db, model.Topic.FIELDS)
 
-  @auth.login_required
+  @auth.admin_required
   def post(self, topic_key):
     """Updates a specific topic"""
     topic_db = ndb.Key(urlsafe=topic_key).get()
@@ -47,7 +47,7 @@ class TopicAPI(restful.Resource):
       helpers.make_not_found_exception('Topic %s not found' % topic_key)
     pass
   
-  @auth.login_required
+  @auth.admin_required
   def delete(self, topic_key):
     """Deletes a specific topic"""
     topic_db = ndb.Key(urlsafe=topic_key).get()

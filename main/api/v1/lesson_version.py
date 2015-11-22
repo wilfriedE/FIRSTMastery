@@ -81,7 +81,7 @@ class LessonVersionAPI(restful.Resource):
       return response
     return helpers.make_bad_request_exception("Unsifificient parameters")
 
-  @auth.login_required
+  @auth.admin_required
   def delete(self, version_key):
     """Deletes a specific lesson version"""
     lesson_version_key = ndb.Key(urlsafe=version_key)

@@ -105,7 +105,7 @@ class LessonAPI(restful.Resource):
       return response
     return helpers.make_bad_request_exception("Unsifificient parameters")
   
-  @auth.login_required
+  @auth.admin_required
   def delete(self, lesson_key):
     """Deletes a specific lesson"""
     lesson_key = ndb.Key(urlsafe=lesson_key).get()

@@ -98,7 +98,7 @@ class CourseAPI(restful.Resource):
       return response
     return helpers.make_bad_request_exception("Unsifificient parameters")
   
-  @auth.login_required
+  @auth.admin_required
   def delete(self, course_key):
     """Deletes a specific course"""
     course_db = ndb.Key(urlsafe=course_key).get()
@@ -116,6 +116,7 @@ class CourseAPI(restful.Resource):
 @api_v1.resource('/course/<string:course_key>/approve', endpoint='api.course.approve')
 class CourseApprovalAPI(restful.Resource):
   """"""
+  @auth.admin_required
   def post(self, course_key):
     data = util.param("data")
     course_db = ndb.Key(urlsafe=course_key).get()

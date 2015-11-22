@@ -96,7 +96,7 @@ class TrackAPI(restful.Resource):
       return response
     return helpers.make_bad_request_exception("Unsifificient parameters")
   
-  @auth.login_required
+  @auth.admin_required
   def delete(self, track_key):
     """Deletes a specific Track"""
     track_db = ndb.Key(urlsafe=track_key).get()
@@ -114,6 +114,7 @@ class TrackAPI(restful.Resource):
 @api_v1.resource('/track/<string:track_key>/approve', endpoint='api.track.approve')
 class TrackApprovalAPI(restful.Resource):
   """"""
+  @auth.admin_required
   def post(self, track_key):
     data = util.param("data")
     track_db = ndb.Key(urlsafe=track_key).get()
