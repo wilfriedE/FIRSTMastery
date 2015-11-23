@@ -4,7 +4,7 @@ FIRSTMastery
 A centralized training resource for the [FIRST](http://www.usfirst.org/) Robotics community.
 Built with [LearnIt](https://github.com/wilfriedE/LearnIt).
 
-Dev Server: [Link](https://dev-firstmastery.appspot.com)
+Dev Server: [Link](http://dev.firstmastery.com/)
 
 Running the Development Environment
 -----------------------------------
