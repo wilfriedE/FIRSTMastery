@@ -9,6 +9,7 @@ from api import helpers
 import auth
 import model
 import util
+import constants as ct
 from main import api_v1
 
 #Vote api endpoint does not need to be created. Creation should occur on other element creations.
@@ -19,16 +20,14 @@ class VoteAPI(restful.Resource):
   def post(self, vote_key):
     """Update a specific vote"""
     vote_db = ndb.Key(urlsafe=vote_key).get()
-    upvote = 0
-    downvote = 0
+    vote = 0
     if util.param('data', str) == 'upvote':
-      upvote = 1
+      vote = ct.UP_VOTE
     elif util.param('data', str) == 'downvote':
-      downvote = 1
+      vote = ct.DOWN_VOTE
     else:
       flask.abort(505)
-    if auth.current_user_key() and (upvote or downvote):
-      vote_db.vote(auth.current_user_key().urlsafe(), upvote, downvote)
+    vote_db.vote(auth.current_user_key().urlsafe(), vote)
     return "Success"
 
   @auth.admin_required

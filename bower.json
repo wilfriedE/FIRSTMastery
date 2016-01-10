@@ -25,11 +25,11 @@
     "font-awesome": "~4",
     "jquery": "~2",
     "moment": "~2",
-    "nprogress": "https://github.com/lipis/nprogress.git#master",
-    "bootstrap-material-design": "~0.4",
+    "bootstrap-material-design": "~0.5",
     "bootstrap-horizon": "~0.1",
     "selectize": "~0.12.1",
-    "bluebird": "~2.10.2"
+    "bluebird": "~2.10.2",
+    "moment": "~2"
   },
   "overrides": {
     "bootstrap": {
