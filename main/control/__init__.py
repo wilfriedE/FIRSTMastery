@@ -5,6 +5,7 @@ from .user import *
 from .admin import *
 from .error import *
 from .feedback import *
+from .letsencrypt import *
 from .profile import *
 from .shared import *
 from .lesson_version import *
