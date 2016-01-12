@@ -1,5 +1,6 @@
 $ ->
   init_common()
+  $.material.init()
 
 $ -> $('html.welcome').each ->
   LOG('init welcome')
