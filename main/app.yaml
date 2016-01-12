@@ -1,4 +1,4 @@
-application: firstmastery
+application: dev-firstmastery
 version: 1
 module: default
 instance_class: F1
