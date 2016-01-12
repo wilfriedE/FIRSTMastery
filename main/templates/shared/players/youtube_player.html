@@ -19,9 +19,9 @@
   var speedHalfButton = $("#play-speed-x0-5"); 
   var speedQuaterButton = $("#play-speed-x0-25");
   var currentSpeedButton = $("#play-speed-x1");
-  var playablestate = "mdi-av-play-circle-outline";
-  var pausablestate = "mdi-av-pause-circle-fill mdi-material-red-A400";
-  var replayablestate = "mdi-av-replay mdi-material-light-blue-A700";
+  var playablestate = "material-icons playablestate";
+  var pausablestate = "material-icons pausablestate";
+  var replayablestate = "material-icons playablestate";
   var hovererable = " primaryhover";
   var totalTime;
   tag.src = "https://www.youtube.com/iframe_api";
@@ -122,10 +122,10 @@
 
   function recordVolumeState(state) {
   if (state == 'muted') {
-  	$(".volumeStateDisplay").addClass("mdi-av-volume-off").removeClass("mdi-av-volume-up");
+  	$(".volumeStateDisplay").text("volume_off");
   };
   if(state == 'notmuted'){
-  	$(".volumeStateDisplay").addClass("mdi-av-volume-up").removeClass("mdi-av-volume-off");
+  	$(".volumeStateDisplay").text("volume_up");
   };
   }
 
@@ -171,28 +171,33 @@
   	//IF the button is currently playing and video is playing show the pause button,
   	if (playbutton.hasClass(playablestate) && event.data == YT.PlayerState.PLAYING ) {
   		playbutton.removeClass(playablestate).addClass(pausablestate);
+      playbutton.text("pause");
   		//start seeking the slider
   		seekSlider.setup();
     } //IF the video is playing however the button must display as pausable,
     else if (event.data == YT.PlayerState.PLAYING) {
     	playbutton.removeClass().addClass(pausablestate + hovererable);
+      playbutton.text("pause");
     	//start seeking the slider
     	seekSlider.setup();
   }
    	//IF the button is currently paused and video is also paused show the play button,
     if (playbutton.hasClass(pausablestate) && event.data == YT.PlayerState.PAUSED) {
   		playbutton.removeClass(pausablestate).addClass(playablestate);
+      playbutton.text("play_arrow");
   		//stop seeking the slider
   		seekSlider.cancel();
     } //IF the video is paused however the button must display as playable,
     else if (event.data == YT.PlayerState.PAUSED) {
     	playbutton.removeClass().addClass(playablestate + hovererable);
+      playbutton.text("play_arrow");
     	//stop seeking the slider
     	seekSlider.cancel();
   }
   //IF video ended then allow for replay- show replay button,
   if ( event.data == YT.PlayerState.ENDED) {
   		playbutton.removeClass().addClass(replayablestate + hovererable);
+      playbutton.text("replay");
   		//stop seeking the slider
   		seekSlider.cancel();
     }
