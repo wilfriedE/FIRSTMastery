@@ -3,7 +3,7 @@
     <div class="media" >
 
     <div class="media-left media-middle">
-      <i class="mdi-maps-layers" style="font-size: 60pt;"></i>
+      <i class="material-icons" style="font-size: 60pt;">library_books</i>
     </div>
     <div class="media-body" >
       <h3 class="title">{{track_db.name}}</h3>
@@ -14,8 +14,8 @@
           <li style="color:{{topic.color}}"><a href="{{url_for('topic_view', topic_name=topic.name)}}">{{topic.name}}</a></li>
         #endfor
       </ul></p> 
-      <a class="btn btn-info" href="{{url_for('track_start',track_key=track_db.key.urlsafe())}}" ><span class="mdi-image-slideshow"></span>Start Track</a>
-      <button class="btn btn-primary"  data-toggle="collapse" data-target="#collapseCourses-{{track_db.key.urlsafe()}}" aria-expanded="false" aria-controls="collapseCourses-{{track_db.key.urlsafe()}}"><span class="mdi-content-content-copy"></span>View Courses</button>
+      <a class="btn btn-info" href="{{url_for('track_start',track_key=track_db.key.urlsafe())}}" ><i class="material-icons">video_library</i> Start Track</a>
+      <button class="btn btn-primary"  data-toggle="collapse" data-target="#collapseCourses-{{track_db.key.urlsafe()}}" aria-expanded="false" aria-controls="collapseCourses-{{track_db.key.urlsafe()}}"><i class="material-icons">view_list</i> View Courses</button>
     </div>
 
     <div  class="collapse" id="collapseCourses-{{track_db.key.urlsafe()}}">
@@ -26,7 +26,7 @@
       <div class="media" style="border-left: 0.25em solid {{course.color}}">
         <div class="media-left media-middle">
           <a href="{{url_for('track_course', track_key=track_db.key.urlsafe(), position=c_position)}}">
-           <i class="mdi-av-play-circle-outline" style="font-size: 50pt;"></i>
+           <i class="material-icons" style="font-size: 50pt;">play_circle_outline</i>
           </a>
         </div>
         <div class="media-body">

@@ -3,14 +3,14 @@
    <div class="media"  style="min-height:200px;">
 
     <div class="media-left media-middle">
-      <a href="{{url_for('lesson', lesson_key=lesson_db.key.urlsafe())}}" style="color:{{lesson_db.color}}"><i class="mdi-av-play-circle-outline" style="font-size: 60pt;"></i></a>
+      <a href="{{url_for('lesson', lesson_key=lesson_db.key.urlsafe())}}" style="color:{{lesson_db.color}}"><i class="material-icons" style="font-size: 60pt;">play_circle_outline</i></a>
     </div>
 
     <div class="media-body">
       <h3 class="title">{{lesson_db.name|truncate(50)}}</h3>
 	  <p class="desc">{{lesson_db.description|truncate(100)}}</p>	
 	  <!-- Versions modal trigger -->
-	  <button class="btn" class="btn btn-primary" data-toggle="collapse" data-target="#collapseVersions-{{lesson_db.key.urlsafe()}}" aria-expanded="false" aria-controls="collapseVersions-{{lesson_db.key.urlsafe()}}"><span class="  mdi-content-content-copy"></span>View Versions </button>
+	  <button class="btn" class="btn btn-primary" data-toggle="collapse" data-target="#collapseVersions-{{lesson_db.key.urlsafe()}}" aria-expanded="false" aria-controls="collapseVersions-{{lesson_db.key.urlsafe()}}"><i class="material-icons">view_list</i> View Versions </button>
       <a align="center" href="{{url_for('propose_new_lesson_version', lesson_id=lesson_db.key.id())}}" type="button"   class="btn btn-primary">Propose an update</a>
     </div>
 
@@ -23,7 +23,7 @@
       <div class="media" style="border-left: 0.25em solid #03a9f4">
         <div class="media-left media-middle">
           <a href="{{url_for('lesson_version', version_key=version_key.urlsafe())}}">
-           <i class="mdi-av-play-circle-outline" style="font-size: 50pt;"></i>
+           <i class="material-icons" style="font-size: 50pt;">play_circle_outline</i>
           </a>
         </div>
         <div class="media-body">
