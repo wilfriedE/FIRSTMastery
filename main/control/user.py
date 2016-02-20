@@ -62,19 +62,26 @@ class UserUpdateForm(wtf.Form):
   admin = wtforms.BooleanField(model.User.admin._verbose_name)
   active = wtforms.BooleanField(model.User.active._verbose_name)
   verified = wtforms.BooleanField(model.User.verified._verbose_name)
+  teams = wtforms.SelectMultipleField(
+      model.User.teams._verbose_name,
+      filters=[util.sort_filter],
+    )
+  _team_choices = set()
+
   permissions = wtforms.SelectMultipleField(
       model.User.permissions._verbose_name,
       filters=[util.sort_filter],
     )
-
   _permission_choices = set()
 
   def __init__(self, *args, **kwds):
     super(UserUpdateForm, self).__init__(*args, **kwds)
+    self.teams.choices = [
+        (t, t) for t in sorted(UserUpdateForm._team_choices)
+    ]
     self.permissions.choices = [
         (p, p) for p in sorted(UserUpdateForm._permission_choices)
       ]
-
   @auth.permission_registered.connect
   def _permission_registered_callback(sender, permission):
     UserUpdateForm._permission_choices.add(permission)
@@ -95,6 +102,9 @@ def user_update(user_id=0):
   for permission in user_db.permissions:
     form.permissions.choices.append((permission, permission))
   form.permissions.choices = sorted(set(form.permissions.choices))
+  for team in user_db.teams:
+    form.teams.choices.append((team, team))
+  form.teams.choices = sorted(set(form.teams.choices))
   if form.validate_on_submit():
     if not util.is_valid_username(form.username.data):
       form.username.errors.append('This username is invalid.')

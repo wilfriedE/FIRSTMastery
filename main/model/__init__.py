@@ -11,7 +11,7 @@ from .lesson import Lesson
 from .lesson_version import LessonVersion
 from .question import Question
 from .quiz import Quiz
-from .suggestion import Suggestion
+from .message import Message
 from .team import Team
 from .topic import Topic
 from .track import Track
