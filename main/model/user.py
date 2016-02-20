@@ -86,6 +86,7 @@ class User(model.Base):
       'permissions': fields.List(fields.String),
       'username': fields.String,
       'verified': fields.Boolean,
+      'teams': fields.Keys,
     }
 
   FIELDS.update(model.Base.FIELDS)

@@ -67,6 +67,9 @@ function dataActionable() {
 			case "collectible":
 				dataCollectible($(element));
 				break
+			case "selectizable":
+				dataSelectizable($(element));
+				break
 			default:
 				console.log("Called action: ", action);
 		};
@@ -168,7 +171,9 @@ function dataCollectible (element) {
 		$(element).data("collected", "true");
 	};
 };
-
+function dataSelectizable (element) {
+	// body...
+};
 function dataAfterEffect (element, value) {
 	// checks for element after-effects to perform
 	// element is the element to check and or perform effects for

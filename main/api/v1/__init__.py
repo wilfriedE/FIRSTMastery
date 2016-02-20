@@ -10,5 +10,6 @@ from .lesson_version import *
 from .lesson import *
 from .course import *
 from .track import *
+from .team import *
 from .vote import *
 from .shared import *

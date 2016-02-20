@@ -1,10 +1,6 @@
 ___development notes___
-Next milestones:
-1)  Implement the voting feature for Lesson and Lesson Versions
-		Allow voting for all users only
-		Add algorithm for Lession Version votes so that when treshold reached it sets vote to zero and becomes the main lesson version for the Main Lesson
-
-2)  Add a div on item cards that alows deletion, updating, etc...
+Next milestones
+	[milestones](https://github.com/wilfriedE/FIRSTMastery/milestones)
 
 #dataActionable
 defines data attributes to easily enable dynamic actions with elements.
@@ -24,14 +20,13 @@ data fields:
 	data-comfirm: "This is to specify a message to ask permission from a user before performing action."
 	data-after-effect: "This is a name for a set of possible after effects."
 
-
 *_old_details_*
 #Some development notes.
 Create a model for Course which has various lessons
 	Has a name, and lessons array of course
 	Has a contributors array with user keys
 Create a model for Track which has various courses
-	Has a name, and courses array of course ///HAHAHA PUN
+	Has a name, and courses array of course
 	Has a contributors array with user keys
 	Tracks can be created by any user but can only be approved by thos with moderator permissions. Same goes for a Course.
 	For creating Courses and Tracks, have modal that displays searchable lessons or Courses that can just be added with a plus button that adds to an array of contents to be added to either a new course or a Track. Render them as cards.
