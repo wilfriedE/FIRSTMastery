@@ -1,25 +1,31 @@
 # extends 'base.html'
 # block content
 	<h2 align="center">Lessons</h2>
+	<div class="row">
    # for lesson in lessons
-    <div class="col-lg-6">
+    <div class="col-sm-6">
         {{ lesson.load_card()|safe }}
     </div>
   # endfor
+</div>
 
   <br style="position:absolute"/>
   <h2 align="center">Courses</h2>
-  # for course in courses
-    <div class="col-lg-6">
+	<div class="row">
+	# for course in courses
+    <div class="col-sm-6">
         {{ course.load_card()|safe }}
     </div>
   # endfor
+</div>
 
    <br style="position:absolute"/>
   <h2 align="center">Tracks</h2>
+<div class="row">
   # for track in tracks
-    <div class="col-lg-6">
+    <div class="col-sm-6">
         {{ track.load_card()|safe }}
     </div>
   # endfor
+</div>
 # endblock
