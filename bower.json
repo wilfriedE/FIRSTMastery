@@ -25,7 +25,7 @@
     "font-awesome": "~4",
     "jquery": "~2",
     "moment": "~2",
-    "bootstrap-material-design": "https://github.com/FezVrasta/bootstrap-material-design.git#5f0ebf4fd66ef9b7ba707431d0170352736a7418",
+    "bootstrap-material-design": "~0.5",
     "bootstrap-horizon": "~0.1",
     "selectize": "~0.12.1",
     "bluebird": "~2.10.2",

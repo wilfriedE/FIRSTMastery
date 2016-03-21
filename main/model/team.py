@@ -27,9 +27,8 @@ class Team(model.Base):
 	def _pre_put_hook(self):
 		self.team_identity = self.program.lower() + "-" + str(self.number)
 
-	def getMembers(self):
-		#return users who's team is equal to the team's identify
-		pass
+	def get_members(self):
+		return model.User.query(model.User.teams.IN([self.key]))
 
 	@classmethod
 	def bulk_delete_teams(cls):
