@@ -4,6 +4,12 @@
   </div>
   <div class="media-body">
     <h3 class="title">{{user_db.name}}</h3>
-	<p class="desc">Team: Available Soon.</p>	
+	<p class="desc"><ul class="list-inline">
+        <li><strong>Teams:</strong></li>
+        #for team_key  in user_db.teams
+        #set team = team_key.get()
+          <li ><a href="{{url_for('team', team_identity=team.team_identity)}}">{{team.number}} ({{team.name}})</a></li>
+        #endfor
+      </ul></p>
   </div>
 </div>
