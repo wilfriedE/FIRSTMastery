@@ -3,7 +3,7 @@
     <div class="media" >
 
     <div class="media-left media-middle">
-      <i class="material-icons" style="font-size: 60pt;">library_books</i>
+      <a  href="{{url_for('track',track_key=track_db.key.urlsafe())}}" ><i class="material-icons" style="font-size: 60pt;">library_books</i></a>
     </div>
     <div class="media-body" >
       <h3 class="title">{{track_db.name}}</h3>
@@ -13,7 +13,7 @@
         #set topic = topic.get()
           <li style="color:{{topic.color}}"><a href="{{url_for('topic_view', topic_name=topic.name)}}">{{topic.name}}</a></li>
         #endfor
-      </ul></p> 
+      </ul></p>
       <a class="btn btn-info" href="{{url_for('track_start',track_key=track_db.key.urlsafe())}}" ><i class="material-icons">video_library</i> Start Track</a>
       <button class="btn btn-primary"  data-toggle="collapse" data-target="#collapseCourses-{{track_db.key.urlsafe()}}" aria-expanded="false" aria-controls="collapseCourses-{{track_db.key.urlsafe()}}"><i class="material-icons">view_list</i> View Courses</button>
     </div>

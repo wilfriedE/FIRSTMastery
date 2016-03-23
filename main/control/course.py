@@ -36,7 +36,7 @@ def course_list():
 ###############################################################################
 @app.route('/course/<course_key>/')
 def course(course_key):
-  course_db = ndb.Key(urlsafe=course_key).get()    
+  course_db = ndb.Key(urlsafe=course_key).get()
   return flask.render_template(
       'course/course.html',
       course_db = course_db,
@@ -46,7 +46,7 @@ def course(course_key):
 
 @app.route('/card/c/<course_id>')
 def course_card(course_id):
-  course_db = model.Course.get_by_id(int(course_id)) 
+  course_db = model.Course.get_by_id(int(course_id))
   return flask.render_template(
       'course/course_card.html',
       title='Course card',
@@ -59,6 +59,9 @@ def course_card(course_id):
 ###############################################################################
 @app.route('/course/<course_key>/l/<position>')
 def course_lesson(course_key, position=0):
+  """ Todo
+            - Keep track of currently logged in user's started course.
+  """
   if course_key and position:
     course_db =  ndb.Key(urlsafe=course_key).get()
     c_lesson = course_db.get_lesson(position)
@@ -113,7 +116,7 @@ def new_course():
 def course_update(course_id):
   course_db = model.Course.get_by_id(int(course_id))
   form = NewCourseForm(name = course_db.name, description = course_db.description,
-    topics = ','.join([ key.urlsafe() for key in course_db.topics]), 
+    topics = ','.join([ key.urlsafe() for key in course_db.topics]),
     lessons = ','.join([ key.urlsafe() for key in course_db.get_lessons()]), course_id = course_db.key.id())
   return flask.render_template(
       'course/course_update.html',

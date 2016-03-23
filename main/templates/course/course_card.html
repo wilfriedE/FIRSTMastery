@@ -3,7 +3,7 @@
    <div class="media" >
 
     <div class="media-left media-middle">
-      <i class="material-icons" style="font-size: 60pt;">book</i>
+        <a href="{{url_for('course', course_key=course_db.key.urlsafe())}}"><i class="material-icons" style="font-size: 60pt;">book</i></a>
     </div>
     <div class="media-body" >
       <h3 class="title">{{course_db.name|truncate(50)}}</h3>

@@ -36,7 +36,7 @@ def track_list():
 ###############################################################################
 @app.route('/track/<track_key>/')
 def track(track_key):
-  track_db = ndb.Key(urlsafe=track_key).get()    
+  track_db = ndb.Key(urlsafe=track_key).get()
   return flask.render_template(
       'track/track.html',
       track_db = track_db,
@@ -46,7 +46,7 @@ def track(track_key):
 
 @app.route('/card/t/<track_id>')
 def track_card(track_id):
-  track_db = model.Track.get_by_id(int(track_id)) 
+  track_db = model.Track.get_by_id(int(track_id))
   return flask.render_template(
       'track/track_card.html',
       title='track card',
@@ -80,6 +80,9 @@ def track_course(track_key, position=0):
 
 @app.route('/track/<track_key>/start')
 def track_start(track_key):
+  """
+    Todo: if current user, keep track of started tracks by including this.
+  """
   track_db = ndb.Key(urlsafe=track_key).get()
   if track_db:
     t_course = track_db.get_course('0')
@@ -122,7 +125,7 @@ def new_track():
 def track_update(track_id):
   track_db = model.Track.get_by_id(int(track_id))
   form = NewTrackForm(name = track_db.name, description = track_db.description,
-   topics = ','.join([ key.urlsafe() for key in track_db.topics]), 
+   topics = ','.join([ key.urlsafe() for key in track_db.topics]),
    courses = ','.join([ key.urlsafe() for key in track_db.get_courses()]), track_id = track_db.key.id())
   return flask.render_template(
       'track/track_update.html',
