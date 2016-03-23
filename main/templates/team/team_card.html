@@ -8,8 +8,8 @@
 
     <div class="media-body">
       <h3 class="title"> {{team_db.name|truncate(50)}}</h3>
-	  <p class="desc"> {{team_db.moto|truncate(100)}}</p>	
-	  <!-- Versions modal trigger -->
+	  <p class="desc"> {{team_db.moto|truncate(100)}}</p>
+    
 	  <button ><i class="material-icons">eye</i> View Versions </button>
       <a align="center" href="{{url_for('team', team_identity=team_db.identity)}}" type="button"   class="btn btn-primary">View Team Page</a>
     </div>

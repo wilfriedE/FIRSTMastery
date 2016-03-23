@@ -24,6 +24,9 @@ class Team(model.Base):
 	admins = ndb.KeyProperty(repeated=True)
 	activities = ndb.KeyProperty(repeated=True, kind='Message')
 
+	def card(self):
+	    return flask.url_for('team_card',team_id=self.key.id())
+
 	def _pre_put_hook(self):
 		self.team_identity = self.program.lower() + "-" + str(self.number)
 
