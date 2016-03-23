@@ -6,14 +6,19 @@
       <a class="btn btn-sm btn-primary btn-raised" href="#">
         <span class="fa fa-fw fa-map-pin"></span> Pin This
       </a>
-	  # if current_user.admin
-	    <a class="btn btn-sm btn-info btn-raised" href="{{url_for('lesson_version_update', lesson_version_id=lesson_db.latest_version.id())}}">
-	    	<span class="fa fa-fw fa-edit"></span> Edit
-	    </a>
-	    <a class="btn btn-sm btn-danger btn-raised" href="#">
-	    	<span class="fa fa-fw fa-close"></span> Delete
-	    </a>
-	    <!--Note delete only puts the lesson into deadlock and disaproved. -->
-	  # endif
+    # if current_user
+      #if current_user.user_db.teams | length > 0
+          # include 'lesson/recommend_lesson.html'
+      #endif
+  	  # if current_user.admin
+  	    <a class="btn btn-sm btn-info btn-raised" href="{{url_for('lesson_version_update', lesson_version_id=lesson_db.latest_version.id())}}">
+  	    	<span class="fa fa-fw fa-edit"></span> Edit
+  	    </a>
+  	    <a class="btn btn-sm btn-danger btn-raised" href="#">
+  	    	<span class="fa fa-fw fa-close"></span> Delete
+  	    </a>
+  	    <!--Note delete only puts the lesson into deadlock and disaproved. -->
+  	  # endif
+    # endif
     </div>
   </div>

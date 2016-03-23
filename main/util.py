@@ -5,6 +5,7 @@ import hashlib
 import re
 import unicodedata
 import urllib
+import json
 
 from google.appengine.datastore.datastore_query import Cursor
 from google.appengine.ext import ndb
@@ -211,7 +212,10 @@ def parse_tags(tags, separator=None):
     tags = str(tags.strip()).split(separator or config.TAG_SEPARATOR)
   return filter(None, sorted(list(set(tags))))
 
-
+def str_to_dict(arg):
+    json_string = arg
+    obj = json.loads(json_string)
+    return obj
 ###############################################################################
 # Lambdas
 ###############################################################################

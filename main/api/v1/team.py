@@ -21,8 +21,8 @@ class TeamListAPI(restful.Resource):
 class TeamAPI(restful.Resource):
   """Returns a specific team data"""
   def get(self, team_identity):
-      team = model.Team.query(model.Team.team_identity==team_identity).fetch()
-      return helpers.make_response(team, model.Team.FIELDS)
+      team_db = model.Team.query(model.Team.team_identity==team_identity).fetch()[0]
+      return helpers.make_response(team_db, model.Team.FIELDS)
 
   def post(arg):
 	"""
@@ -36,6 +36,23 @@ class TeamAPI(restful.Resource):
         team_db.put()
 	"""
 	pass
+
+@api_v1.resource('/teams/<team_identity>/recommend', endpoint='api.team.recommend')
+class TeamRecommendationAPI(restful.Resource):
+  """"""
+  def post(self, team_identity):
+    team_db = model.Team.query(model.Team.team_identity==team_identity).fetch()[0]
+    #data = util.str_to_dict(util.param("data"))
+    recommendations = [key.urlsafe() for key in team_db.recommendations]
+    recommendations =  [ ndb.Key(urlsafe=key_url) for key_url in util.param("recommendations", list) if key_url not in recommendations]
+    if not team_db:
+      return helpers.make_not_found_exception('Team %s not found' % team_identity)
+    team_db.recommendations += recommendations
+    team_key = team_db.put()
+    return flask.jsonify({
+        'result': {'message': 'Team has been updated', 'key': team_key.urlsafe()},
+        'status': 'success',
+      })
 
 @api_v1.resource('/teams/reload', endpoint='api.team.reload')
 class TeamReloadAPI(restful.Resource):

@@ -49,6 +49,31 @@ function deleteUsingAjax(url, data, success_callback, error_callback) {
 	error_callback = typeof error_callback !== 'undefined' ? error_callback : undefined;
     return makeAjaxCall('DELETE', url, data, success_callback, error_callback);
 };
+function handleUsingAjax(action, url, data, success_callback, error_callback){
+	switch (action.toUpperCase()) {
+		case 'POST':
+		  return postUsingAjax(url, data, success_callback, error_callback);
+			break;
+		case 'PUT':
+			return putUsingAjax(url, data, success_callback, error_callback);
+			break;
+		case 'GET':
+			return getUsingAjax(url, data, success_callback, error_callback);
+			break;
+		case 'DELETE':
+			return deleteUsingAjax(url, data, success_callback, error_callback);
+			break;
+		default:
+			return false;
+	}
+};
+$(".silent-form").submit(function(event) {
+	event.preventDefault();
+	var form = $(this);
+	handleUsingAjax(form.attr('method'), form.attr('action'), form.serialize(), function(args){return true}, function(args){return true}).then(function(){
+		document.getElementById("" + $(this)[0].id +"").style.visibility = "hidden";
+	}.bind(this));
+});
 function makeNotification (message, sclass) {
 	$("#notifications").html("<div class='alert alert-dismissable alert-warning'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>" + message + "</div>");
 };
@@ -119,7 +144,7 @@ function dataPostable (element) {
 };
 
 function dataGetable (element) {
-	// elements that perform get requests to populate 
+	// elements that perform get requests to populate
 	var url = $(element).data("url");
 	var data = $(element).data("value");
 	var action = $(element).data("getable").toLowerCase();
@@ -150,7 +175,7 @@ function dataCollectible (element) {
 		var finptvalues = [];
 		var ptvalues = $(element).data("collectors").split(",");
 		for (var i = ptvalues.length - 1; i >= 0; i--) {
-			finptvalues.append.push( $("[data-actionable='"+ptvalues[i]+"']") ); 
+			finptvalues.append.push( $("[data-actionable='"+ptvalues[i]+"']") );
 		};
 		return finptvalues;
 	})(); //evaluates the collectors attribute and returns the collector (parent) elements.
@@ -244,7 +269,7 @@ function dataElemEffect (element, effect, value) {
 			break
 		default:
 			console.log("Unable to perform effect: ", effect, " on element");
-	}; 
+	};
 };
 
 dataActionable();

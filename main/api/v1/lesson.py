@@ -82,7 +82,7 @@ class LessonAPI(restful.Resource):
     if util.param('name') and util.param('is_a'):
       b_is_a = util.param('is_a')
       b_data = helpers.data_scheme_constructor(b_is_a, helpers.rerieve_content_fields(util))
-      b_topics = [ ndb.Key(urlsafe=topic_key_url) for topic_key_url in util.param('topics', list)]
+      b_topics = [ ndb.Key(urlsafe=key_url) for key_url in util.param('topics', list)]
       b_name = util.param('name')
       b_description = util.param('description')
       b_lesson = ndb.Key(urlsafe=lesson_key).get()
@@ -104,7 +104,7 @@ class LessonAPI(restful.Resource):
       }
       return response
     return helpers.make_bad_request_exception("Unsifificient parameters")
-  
+
   @auth.admin_required
   def delete(self, lesson_key):
     """Deletes a specific lesson"""
@@ -118,7 +118,7 @@ class LessonAPI(restful.Resource):
         'result': {'message': 'Lesson has been placed in dealock state', 'key': lesson_key},
         'status': 'success',
       })
-    
+
 
 @api_v1.resource('/lessons/<string:lesson_key>/approve', endpoint='api.lesson.approve')
 class LessonApprovalAPI(restful.Resource):

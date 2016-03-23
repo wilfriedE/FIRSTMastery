@@ -1,0 +1,41 @@
+<a class="btn btn-sm btn-primary btn-raised" href="#"  data-toggle="modal" data-target="#recommendationsModal">
+  <span class="fa fa-fw fa-map-pin"></span>Recommend to Team ({{current_user.user_db.teams | length}})
+</a>
+<!-- Team recommendations Modal -->
+<div class="modal fade" id="recommendationsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <h4 class="modal-title" id="myModalLabel">Select Teams to recommend to</h4>
+    </div>
+    <div class="modal-body">
+  <table  class="table">
+      # for team_key in current_user.user_db.teams
+      #set team_db = team_key.get()
+        #if lesson_db.key not in team_db.recommendations
+          <tr>
+            <form method="POST" class="silent-form"
+            action="{{url_for('api.team.recommend', team_identity=team_db.team_identity)}}"  novalidate id="recommend-{{team_db.team_identity}}">
+              <div class="row">
+                <div  class=" checkbox col-sm-6">
+                <label>
+                  <input type="checkbox"  name="recommendations" value="{{lesson_db.key.urlsafe()}}">
+                  {{team_db.number}} : {{team_db.name}}
+                </label>
+              </div>
+              <div class="col-sm-6"><button type="submit" class="btn btn-primary btn-sm btn-block btn-loading" id="submit-form-btn">
+                Recommend</button></div>
+              </div>
+            </form>
+          </tr>
+        #endif
+      #endfor
+    </table>
+  </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+  </div>
+  </div>
+  </div>
