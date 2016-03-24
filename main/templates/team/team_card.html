@@ -1,6 +1,6 @@
 <div class="row">
-  <div class="well well-md">
-   <div class="media"  style="min-height:200px;">
+  <div class="well well-sm">
+   <div class="media"  >
 
     <div class="media-left media-middle">
      <img src="https://placeholdit.imgix.net/~text?txtsize=40&bg=150x150&txt=Team+%0A+{{team_db.number}}&w=150&h=150" alt="{{team_db.name}}">
@@ -9,7 +9,7 @@
     <div class="media-body">
       <h3 class="title"> {{team_db.name|truncate(50)}}</h3>
 	  <p class="desc"> {{team_db.moto|truncate(100)}}</p>
-    
+
 	  <button ><i class="material-icons">eye</i> View Versions </button>
       <a align="center" href="{{url_for('team', team_identity=team_db.identity)}}" type="button"   class="btn btn-primary">View Team Page</a>
     </div>
