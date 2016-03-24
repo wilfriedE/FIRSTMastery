@@ -17,7 +17,6 @@ config =
     "#{paths.static.ext}/bootstrap-material-design/scripts/ripples.js"
     "#{paths.static.ext}/selectize/dist/js/standalone/selectize.js"
     "#{paths.static.ext}/bluebird/js/browser/bluebird.js"
-    "#{paths.src.script}/**/*.js"
   ]
   style: [
     "#{paths.src.style}/style.less"
